@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
 const connectDb = require('./config/database')
-//const cors = require('cors')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const port = process.env.PORT || 8000
 
@@ -10,10 +10,7 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-// app.use(cors({
-//     origin : ["http://localhost:3000", "http://localhost:3001"],
-//     default: "http://localhost:3000"
-// }))
+app.use(cors())
 app.use('/api', require('./routes/ImagePosterRoute'))
 app.use('/product', require('./routes/ProductsRoute'))
 app.use('/api/user', require('./routes/UserRoute'))
